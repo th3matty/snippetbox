@@ -19,8 +19,6 @@ func main() {
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 
-	// Initialize a new instance of our application struct, containing the
-	// dependencies.
 	app := &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
