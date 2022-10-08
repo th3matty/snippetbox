@@ -46,8 +46,8 @@ func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
 		app.clientError(w, http.StatusMethodNotAllowed)
 		return
 	}
-	// Create some variables holding dummy data. We'll remove these later on
-	// during the build.
+	// Create some variables holding dummy data.
+	// remove later
 	title := "O snail"
 	content := "O snail\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
 	expires := 7
