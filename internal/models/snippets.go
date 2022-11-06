@@ -43,9 +43,7 @@ func (m *SnippetModel) Get(id int) (*Snippet, error) {
 
 	err := row.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
 	if err != nil {
-		// If the query returns no rows, then row.Scan() will return a
-		// sql.ErrNoRows error. Use the errors.Is() function check for that
-		// error specifically, and return our own ErrNoRecord error
+		// If the query returns no rows, then row.Scan() will return a sql.ErrNoRows error.
 		if errors.Is(err, sql.ErrNoRows) {
 			return nil, ErrNoRecord
 		} else {
@@ -69,11 +67,7 @@ func (m *SnippetModel) Latest() ([]*Snippet, error) {
 
 	for rows.Next() {
 		s := &Snippet{}
-		// Use rows.Scan() to copy the values from each field in the row to the
-		// new Snippet object that we created. Again, the arguments to row.Scan()
-		// must be pointers to the place you want to copy the data into, and the
-		// number of arguments must be exactly the same as the number of
-		// columns returned by your statement.
+		// The arguments to row.Scan() must be pointers to the place you want to copy the data into
 		err = rows.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
 		if err != nil {
 			return nil, err
@@ -81,8 +75,6 @@ func (m *SnippetModel) Latest() ([]*Snippet, error) {
 		snippets = append(snippets, s)
 
 	}
-	// When the rows.Next() loop has finished we call rows.Err() to retrieve any
-	// error that was encountered during the iteration.
 	if err = rows.Err(); err != nil {
 		return nil, err
 	}
